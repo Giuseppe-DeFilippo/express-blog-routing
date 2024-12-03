@@ -1,4 +1,3 @@
-// ### Esercizio
 // Usando l'array dei post con le relative immagini, creare un file di routing (routers/posts.js) che conterrà le rotte necessarie per l'entità post.
 //     All'interno creare le rotte per le operazioni CRUD (Index, Show, Create, Update e Delete)
 // Tutte le risposte saranno dei testi che confermeranno l’operazione che il server deve eseguire, secondo le convenzioni REST.
@@ -13,51 +12,13 @@
 const express = require("express")
 const app = express()
 const PORT = 3000
+const lista = require("./post.js")
+app.use(express.static("public"));
+
 
 app.get("/", (req, res) => {
     res.send("server del mio blog")
 })
-
-app.use(express.static("public"));
-
-
-const lista = [
-    {
-        id: 1,
-        img: "ciambellone.jpeg",
-        titolo: "ciambellone",
-        contenuto: "ciambella",
-        tags: ["ciambellone", "ciambella"]
-    },
-    {
-        id: 2,
-        img: "cracker_barbabietola.jpeg",
-        titolo: "cracker barbabietola",
-        contenuto: "crecs",
-        tags: ["cracker", "crecs"]
-    },
-    {
-        id: 3,
-        img: "pane_fritto.jpeg",
-        titolo: "pane fritto dolce",
-        contenuto: "pane ",
-        tags: ["pane", "fritto"]
-    },
-    {
-        id: 4,
-        img: "pasta_barbabietola.jpeg",
-        titolo: "pasta barbabietola",
-        contenuto: "barbabietola",
-        tags: ["pasta", "barbabietola"]
-    },
-    {
-        id: 5,
-        img: "torta_paesana.jpeg",
-        titolo: "torta paesana",
-        contenuto: "torta",
-        tags: ["torta", "paesana"]
-    }
-];
 app.get("/bacheca", (req, res) => {
     res.json({
         conteggio: lista.length,
