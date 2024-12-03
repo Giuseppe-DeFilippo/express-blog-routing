@@ -56,17 +56,29 @@ router.get("/bacheca/:id", (req, res) => {
 //create
 
 router.post("/bacheca", (req, res) => {
-    console.log(req)
     const nuovoPost = req.body;
     nuovoPost.id = lista.length + 1;
     lista.push(nuovoPost);
     res.json(lista);
 })
 
-//update
+//update per modificare un elemento
 
 router.put("/bacheca/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const modificaPost = req.body;
+    let indice = lista.indexOf(lista.find((post) => id === post.id));
+    lista.splice(indice, 1, modificaPost);
+    res.json(lista);
+})
 
+//delete
+
+router.delete("/bacheca/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    let indice = lista.indexOf(lista.find((post) => id === post.id));
+    lista.splice(indice, 1);
+    res.json(lista);
 })
 
 module.exports = router;
