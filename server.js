@@ -12,20 +12,16 @@
 const express = require("express")
 const app = express()
 const PORT = 3000
-const lista = require("./post.js")
+const router = require("./post.js")
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(express.static("public"));
+app.use("/", router)
 
-
-app.get("/", (req, res) => {
-    res.send("server del mio blog")
-})
-app.get("/bacheca", (req, res) => {
-    res.json({
-        conteggio: lista.length,
-        post: lista
-    });
-});
-
+// app.get("/", (req, res) => {
+//     res.send("server del mio blog")
+// })
 
 app.listen(PORT, () => {
     console.log(`Server in esecuzione su http://localhost:${PORT}`);
