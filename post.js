@@ -39,7 +39,7 @@ const lista = [
 ];
 
 
-router.get("/bacheca", (req, res) => {
+router.get("", (req, res) => {
     res.json({
         conteggio: lista.length,
         post: lista
@@ -47,7 +47,7 @@ router.get("/bacheca", (req, res) => {
 });
 
 //show
-router.get("/bacheca/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const post = lista.find((post) => id === post.id);
     res.json(post)
@@ -55,7 +55,7 @@ router.get("/bacheca/:id", (req, res) => {
 
 //create
 
-router.post("/bacheca", (req, res) => {
+router.post("", (req, res) => {
     const nuovoPost = req.body;
     nuovoPost.id = lista.length + 1;
     lista.push(nuovoPost);
@@ -64,7 +64,7 @@ router.post("/bacheca", (req, res) => {
 
 //update per modificare un elemento
 
-router.put("/bacheca/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const modificaPost = req.body;
     let indice = lista.indexOf(lista.find((post) => id === post.id));
@@ -74,7 +74,7 @@ router.put("/bacheca/:id", (req, res) => {
 
 //delete
 
-router.delete("/bacheca/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const id = parseInt(req.params.id);
     let indice = lista.indexOf(lista.find((post) => id === post.id));
     lista.splice(indice, 1);

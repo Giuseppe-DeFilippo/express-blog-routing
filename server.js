@@ -17,11 +17,12 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static("public"));
-app.use("/", router)
+app.use("/bacheca", router)
+app.use("/animale", require("./animale.js"))
 
-// app.get("/", (req, res) => {
-//     res.send("server del mio blog")
-// })
+app.get("/", (req, res) => {
+    res.send("server del mio blog")
+})
 
 app.listen(PORT, () => {
     console.log(`Server in esecuzione su http://localhost:${PORT}`);
